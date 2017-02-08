@@ -1,0 +1,26 @@
+<?php
+
+namespace DummyNamespace;
+
+use EloquentInteractions\Interaction;
+
+class DummyClass extends Interaction
+{
+    /**
+     * Parameter validations
+     *
+     * @var array
+     */
+    public $validations = [
+        //
+    ];
+
+    /**
+     * Execute the interaction
+     *
+     * @return void
+     */
+    public function execute() {
+        //
+    }
+}

@@ -1,8 +1,9 @@
 <?php namespace EloquentInteractions;
 
-use Validator;
+use Illuminate\Validation\Validator;
+use EloquentInteractions\Exceptions\ValidationException;
 
-class BaseInteraction {
+abstract class Interaction {
 
   /**
    * Validation errors
@@ -24,6 +25,11 @@ class BaseInteraction {
    * @var boolean
    */
   public $valid;
+
+  /**
+   * Actual interaction code required for interactions to work
+   */
+  abstract public function execute();
 
   /**
    * Setup interaction
@@ -81,7 +87,7 @@ class BaseInteraction {
         return $outcome->result;
       } else {
         // only throw an exception for the first error
-        throw new \Exception($outcome->errors->first());
+        throw new ValidationException($outcome->errors->first());
       }
     } else {
       return $outcome;

@@ -12,7 +12,8 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/validation": "^5.3",
-        "illuminate/support": "^5.3"
+        "illuminate/support": "^5.3",
+        "illuminate/console": "^5.3"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
@@ -20,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "EloquentInteractions\\": "src/"
+            "EloquentInteractions\\": "src/EloquentInteractions"
         }
     },
     "autoload-dev": {
