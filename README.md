@@ -20,7 +20,7 @@ Eloquent Interactions is build with Laravel 5.3+ in mind. Earlier versions of La
 
 ### Laravel < 5.5:
 
-If you have disabled auto-discovery in Laravel, or are using a version of Laravel prior to 5.5, add the `EloquentInteractionsServiceProvider` to the providers array in `config/app.php`:
+If you have disabled auto-discovery in Laravel, or are using a version of Laravel prior to 5.5, add the `EloquentInteractionsServiceProvider` to the `providers` array in `config/app.php`:
 
 ```php
 ZachFlower\EloquentInteractions\EloquentInteractionsServiceProvider::class,
@@ -156,7 +156,7 @@ In a nutshell, this validator checks the `instanceof` of an input parameter agai
 
 In addition to the built-in validation errors, Eloquent Interactions also has support for custom validation errors directly within the `execute()` method. This can be accomplished by utilizing the Laravel validator's own `add()` method directly on its `errors()` method:
 
-```
+```php
 public function execute() {
     $this->validator->errors()->add('entity', 'The entity object type is invalid.');
 }
