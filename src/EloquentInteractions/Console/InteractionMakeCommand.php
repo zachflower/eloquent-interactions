@@ -6,14 +6,14 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class InteractionMakeCommand extends GeneratorCommand
+class MakeInteractionCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'interaction:make';
+    protected $name = 'make:interaction';
 
     /**
      * The console command description.

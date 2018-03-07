@@ -3,8 +3,7 @@
 namespace ZachFlower\EloquentInteractions;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
-use EloquentInteractions\Commands\InteractionMakeCommand;
+use ZachFlower\EloquentInteractions\Commands\MakeInteractionCommand;
 
 class EloquentInteractionsServiceProvider extends ServiceProvider {
 
@@ -17,7 +16,7 @@ class EloquentInteractionsServiceProvider extends ServiceProvider {
     // register console commands
     if ($this->app->runningInConsole()) {
       $this->commands([
-          InteractionMakeCommand::class
+          MakeInteractionCommand::class
       ]);
     }
 
