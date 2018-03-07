@@ -2,7 +2,7 @@
 
 namespace ZachFlower\EloquentInteractions;
 
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 use ZachFlower\EloquentInteractions\Exceptions\ValidationException;
 
 abstract class Interaction {
@@ -48,7 +48,7 @@ abstract class Interaction {
    * @param array $params Interaction parameters
    */
   public function __construct($params = []) {
-    $this->validator = Validator::make($params, $this->validations);
+    $this->validator = Validator::make($params, $this->validations, ['object' => 'The :attribute object type is invalid.']);
 
     $this->params = $params;
   }
@@ -142,9 +142,9 @@ class Outcome {
   /**
    * Setup outcome
    *
-   * @param App\Interactions\BaseInteraction $interactor Instantiated interactor
+   * @param App\Interactions\Interaction $interactor Instantiated interactor
    */
-  public function __construct(BaseInteraction $interactor) {
+  public function __construct(Interaction $interactor) {
     $this->validator = $interactor->validator;
     $this->params = $interactor->params;
 

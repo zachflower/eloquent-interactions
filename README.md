@@ -18,7 +18,7 @@ Eloquent Interactions is build with Laravel 5.3+ in mind. Earlier versions of La
 
 ### Laravel < 5.5:
 
-If you don't use auto-discovery, or or on a Laravel version less than 5.5, add the `EloquentInteractionsServiceProvider` to the providers array in `config/app.php`:
+If you have disabled auto-discovery in Laravel add the `EloquentInteractionsServiceProvider` to the providers array in `config/app.php`:
 
 ```php
 ZachFlower\EloquentInteractions\EloquentInteractionsServiceProvider::class,
@@ -28,13 +28,13 @@ ZachFlower\EloquentInteractions\EloquentInteractionsServiceProvider::class,
 
 To get started with Eloquent Interactions, let's first create a new Interaction. Interactions typically live in the `app/Interactions` directory, but you are free to place them anywhere that can be auto-loaded according to your `composer.json` file. All Eloquent Interactions extend the `\ZachFlower\EloquentInteractions\Interaction` abstract class.
 
-The easiest way to create an Interaction is using the `interaction:make` [Artisan command](https://laravel.com/docs/master/artisan):
+The easiest way to create an Interaction is using the `make:interaction` [Artisan command](https://laravel.com/docs/master/artisan):
 
 ```
-php artisan interaction:make ConvertMetersToMiles
+php artisan make:interaction ConvertMetersToMiles
 ```
 
-Now, let's take a look at the base Interaction that was created by the `interaction:make` command above:
+Now, let's take a look at the base Interaction that was created by the `make:interaction` command above:
 
 ```php
 <?php
