@@ -182,4 +182,4 @@ The [issue tracker](https://github.com/zachflower/eloquent-interactions/issues) 
 
 ## Copyright and License
 
-Code and documentation copyright Zachary Flower. Code released under the MIT license.
+Code and documentation copyright 2017 Zachary Flower. Code released under the [MIT license](https://github.com/zachflower/eloquent-interactions/blob/master/LICENSE.md).
