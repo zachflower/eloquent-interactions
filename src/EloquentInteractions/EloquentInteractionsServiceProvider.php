@@ -3,7 +3,7 @@
 namespace ZachFlower\EloquentInteractions;
 
 use Illuminate\Support\ServiceProvider;
-use ZachFlower\EloquentInteractions\Commands\MakeInteractionCommand;
+use ZachFlower\EloquentInteractions\Console\Commands\MakeInteractionCommand;
 
 class EloquentInteractionsServiceProvider extends ServiceProvider {
 
