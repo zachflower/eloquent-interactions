@@ -20,7 +20,7 @@ Eloquent Interactions is build with Laravel 5.3+ in mind. Earlier versions of La
 
 ### Laravel < 5.5:
 
-If you have disabled auto-discovery in Laravel add the `EloquentInteractionsServiceProvider` to the providers array in `config/app.php`:
+If you have disabled auto-discovery in Laravel, or are using a version of Laravel prior to 5.5, add the `EloquentInteractionsServiceProvider` to the providers array in `config/app.php`:
 
 ```php
 ZachFlower\EloquentInteractions\EloquentInteractionsServiceProvider::class,
