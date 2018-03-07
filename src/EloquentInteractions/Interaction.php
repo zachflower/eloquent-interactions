@@ -1,4 +1,6 @@
-<?php namespace EloquentInteractions;
+<?php
+
+namespace EloquentInteractions;
 
 use Illuminate\Validation\Validator;
 use EloquentInteractions\Exceptions\ValidationException;
@@ -17,7 +19,7 @@ abstract class Interaction {
    *
    * @var array
    */
-  public $params;
+  public $params = [];
 
   /**
    * Whether or not validation failed
@@ -27,9 +29,18 @@ abstract class Interaction {
   public $valid;
 
   /**
-   * Actual interaction code required for interactions to work
+   * The Laravel validator
+   *
+   * @var object
    */
-  abstract public function execute();
+  public $validator;
+
+  /**
+   * Validations
+   *
+   * @var array
+   */
+  public $validations = [];
 
   /**
    * Setup interaction
@@ -37,10 +48,8 @@ abstract class Interaction {
    * @param array $params Interaction parameters
    */
   public function __construct($params = []) {
-    $validator = Validator::make($params, $this->validations);
+    $this->validator = Validator::make($params, $this->validations);
 
-    $this->valid = !$validator->fails();
-    $this->errors = $validator->errors();
     $this->params = $params;
   }
 
@@ -48,11 +57,10 @@ abstract class Interaction {
    * Make interaction parameters accessible as object values
    *
    * @param  string $key
-   *
    * @return mixed
    */
   public function __get($key) {
-    if ( array_key_exists($key, $this->params) ) {
+    if ( !empty($this->params) && array_key_exists($key, $this->params) ) {
       return $this->params[$key];
     }
 
@@ -73,8 +81,7 @@ abstract class Interaction {
    * Static method to run the interaction as a singleton
    *
    * @param  array $params            Interaction parameters
-   * @param  bool  $dangerous         Run the interaction dangerously
-   *
+   * @param  bool  $dangerous         Throw exceptions?
    * @return App\Interactions\Outcome Outcome of the run interaction
    */
   public static function run($params = [], $dangerous = FALSE) {
@@ -86,8 +93,8 @@ abstract class Interaction {
       if ( $outcome->valid ) {
         return $outcome->result;
       } else {
-        // only throw an exception for the first error
-        throw new ValidationException($outcome->errors->first());
+        // only throw a validation exception
+        throw new ValidationException($outcome->validator);
       }
     } else {
       return $outcome;
@@ -126,16 +133,34 @@ class Outcome {
   public $result;
 
   /**
+   * The Laravel validator object
+   *
+   * @var object
+   */
+  public $validator;
+
+  /**
    * Setup outcome
    *
    * @param App\Interactions\BaseInteraction $interactor Instantiated interactor
    */
   public function __construct(BaseInteraction $interactor) {
-    $this->errors = $interactor->errors;
+    $this->validator = $interactor->validator;
     $this->params = $interactor->params;
 
-    if ( $this->valid = $interactor->valid ) {
+    // only execute the interactor if it passes initial validation
+    if ( !$this->validator->fails() ) {
       $this->result = $interactor->execute();
+
+      // if the interactor adds its own error messages, then mark the result
+      // as not valid and empty out the result
+      if ( !($this->valid = $this->validator->errors()->isEmpty()) ) {
+        $this->result = NULL;
+      }
+    } else {
+      $this->valid = FALSE;
     }
+
+    $this->errors = $this->validator->errors();
   }
 }

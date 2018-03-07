@@ -1,4 +1,6 @@
-<?php namespace EloquentInteractions;
+<?php
+
+namespace EloquentInteractions;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;

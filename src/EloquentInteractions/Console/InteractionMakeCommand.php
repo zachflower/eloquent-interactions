@@ -1,4 +1,6 @@
-<?php namespace EloquentInteractions\Console;
+<?php
+
+namespace EloquentInteractions\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
