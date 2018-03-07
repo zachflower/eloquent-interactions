@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use EloquentInteractions\Interaction;
+use ZachFlower\EloquentInteractions\Interaction;
 
 class DummyClass extends Interaction
 {

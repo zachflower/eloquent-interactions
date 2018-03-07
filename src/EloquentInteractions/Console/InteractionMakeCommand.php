@@ -1,6 +1,6 @@
 <?php
 
-namespace EloquentInteractions\Console;
+namespace ZachFlower\EloquentInteractions\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;

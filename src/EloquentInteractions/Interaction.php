@@ -1,9 +1,9 @@
 <?php
 
-namespace EloquentInteractions;
+namespace ZachFlower\EloquentInteractions;
 
 use Illuminate\Validation\Validator;
-use EloquentInteractions\Exceptions\ValidationException;
+use ZachFlower\EloquentInteractions\Exceptions\ValidationException;
 
 abstract class Interaction {
 

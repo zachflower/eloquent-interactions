@@ -1,6 +1,6 @@
 <?php
 
-namespace EloquentInteractions;
+namespace ZachFlower\EloquentInteractions;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;

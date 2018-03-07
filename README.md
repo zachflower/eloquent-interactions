@@ -16,9 +16,17 @@ composer require zachflower/eloquent-interactions
 
 Eloquent Interactions is build with Laravel 5.3+ in mind. Earlier versions of Laravel _may_ work, but they have not been tested, so your mileage may vary.
 
+### Laravel < 5.5:
+
+If you don't use auto-discovery, or or on a Laravel version less than 5.5, add the `EloquentInteractionsServiceProvider` to the providers array in `config/app.php`:
+
+```php
+ZachFlower\EloquentInteractions\EloquentInteractionsServiceProvider::class,
+```
+
 ## Basic Usage
 
-To get started with Eloquent Interactions, let's first create a new Interaction. Interactions typically live in the `app/Interactions` directory, but you are free to place them anywhere that can be auto-loaded according to your `composer.json` file. All Eloquent Interactions extend the `\EloquentInteractions\Interaction` abstract class.
+To get started with Eloquent Interactions, let's first create a new Interaction. Interactions typically live in the `app/Interactions` directory, but you are free to place them anywhere that can be auto-loaded according to your `composer.json` file. All Eloquent Interactions extend the `\ZachFlower\EloquentInteractions\Interaction` abstract class.
 
 The easiest way to create an Interaction is using the `interaction:make` [Artisan command](https://laravel.com/docs/master/artisan):
 
@@ -93,7 +101,7 @@ class ConvertMetersToMiles extends Interaction
 }
 ```
 
-To execute the Interaction, you can call the static `run()` method on the class. As the Interaction's `$validations` property defines the expected inputs, a simple key-value array should be passed to `run()` with the expected input. This method will return a new instance of the `\EloquentInteractions\Outcome` class. To check the success of the outcome, a boolean `$valid` property will be set on the `Outcome` object, with `TRUE` meaning the input validation passed, and `FALSE` meaning it failed. If the validation failed, all validation errors will be stored in the `$errors` property on the `Outcome` object. If validation passes, the value returned from the `execute()` method will be stored in the `$result` property on the `Outcome` object.
+To execute the Interaction, you can call the static `run()` method on the class. As the Interaction's `$validations` property defines the expected inputs, a simple key-value array should be passed to `run()` with the expected input. This method will return a new instance of the `\ZachFlower\EloquentInteractions\Outcome` class. To check the success of the outcome, a boolean `$valid` property will be set on the `Outcome` object, with `TRUE` meaning the input validation passed, and `FALSE` meaning it failed. If the validation failed, all validation errors will be stored in the `$errors` property on the `Outcome` object. If validation passes, the value returned from the `execute()` method will be stored in the `$result` property on the `Outcome` object.
 
 ```php
 >>> $outcome = ConvertMetersToMiles::run(['meters' => 100]);
@@ -113,7 +121,7 @@ To execute the Interaction, you can call the static `run()` method on the class.
    ]
 ```
 
-If you would rather deal with error handling on your own, you can pass `TRUE` as a second parameter to the `run()` method. This, for lack of a better word, will execute the Interaction "dangerously," meaning that any defined errors will be thrown as exceptions of the type `\EloquentInteractions\Exceptions\ValidationException` instead.
+If you would rather deal with error handling on your own, you can pass `TRUE` as a second parameter to the `run()` method. This, for lack of a better word, will execute the Interaction "dangerously," meaning that any defined errors will be thrown as exceptions of the type `\ZachFlower\EloquentInteractions\Exceptions\ValidationException` instead.
 
 ```php
 >>> $outcome = App\Interactions\Utility\ConvertMetersToMiles::run(['meters' => 'one hundred'], TRUE);

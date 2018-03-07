@@ -1,7 +1,7 @@
 {
     "name": "zachflower/eloquent-interactions",
     "description": "An implementation of the interactor pattern for Laravel.",
-    "keywords": ["interactor", "laravel"],
+    "keywords": ["interactor", "laravel", "library", "eloquent"],
     "license": "MIT",
     "authors": [
         {
@@ -21,18 +21,18 @@
     },
     "autoload": {
         "psr-4": {
-            "EloquentInteractions\\": "src/EloquentInteractions"
+            "ZachFlower\\EloquentInteractions\\": "src/EloquentInteractions"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "ZachFlower\\EloquentInteractions\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "EloquentInteractions\\EloquentInteractionsServiceProvider"
+                "ZachFlower\\EloquentInteractions\\EloquentInteractionsServiceProvider"
             ]
         }
     }

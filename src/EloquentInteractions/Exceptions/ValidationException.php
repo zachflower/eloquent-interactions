@@ -1,6 +1,6 @@
 <?php
 
-namespace EloquentInteractions\Exceptions;
+namespace ZachFlower\EloquentInteractions\Exceptions;
 
 class ValidationException extends \Illuminate\Validation\ValidationException {
 
