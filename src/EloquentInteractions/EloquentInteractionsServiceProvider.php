@@ -22,12 +22,9 @@ class EloquentInteractionsServiceProvider extends ServiceProvider {
     }
 
     // validate the input object type against the defined object type
-    Validator::extend('object', function ($attribute, $value, $parameters, $validator) {
+    $this->app['validator']->extend('object', function ($attribute, $value, $parameters, $validator) {
       return $value instanceof $parameters[0];
     });
-
-    // add translator namespace
-    $this->app['translator']->addNamespace('EloquentInteractions', __DIR__.'/../lang');
   }
 
   /**
