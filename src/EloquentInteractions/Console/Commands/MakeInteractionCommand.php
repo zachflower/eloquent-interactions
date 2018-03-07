@@ -30,15 +30,24 @@ class MakeInteractionCommand extends GeneratorCommand
     protected $type = 'Interaction';
 
     /**
-     * Replace the class name for the given stub.
+     * Build the class with the given name.
      *
-     * @param  string  $stub
+     * Remove the base interaction import if we are already in base namespace.
+     *
      * @param  string  $name
      * @return string
      */
-    protected function replaceClass($stub, $name)
+    protected function buildClass($name)
     {
-        $stub = parent::replaceClass($stub, $name);
+        $interactionNamespace = $this->getNamespace($name);
+
+        $replace = [];
+
+        $replace["use {$interactionNamespace}\Interaction;\n"] = '';
+
+        return str_replace(
+            array_keys($replace), array_values($replace), parent::buildClass($name)
+        );
     }
 
     /**
