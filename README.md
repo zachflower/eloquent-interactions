@@ -2,7 +2,7 @@
 
 Eloquent Interactions manages application-specific business logic. It's an implementation of the command pattern in PHP for Laravel, and is inspired by the [ActiveInteraction](https://github.com/AaronLasseigne/active_interaction) library in Ruby.
 
- [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/eloquent-interactions/Lobby) [![Latest Stable Version](https://poser.pugx.org/zachflower/eloquent-interactions/version)](https://packagist.org/packages/zachflower/eloquent-interactions) [![Maintainability](https://api.codeclimate.com/v1/badges/a89ba1a0ac414a0db6ae/maintainability)](https://codeclimate.com/github/zachflower/eloquent-interactions/maintainability) [![Build Status](https://travis-ci.org/zachflower/eloquent-interactions.svg?branch=master)](https://travis-ci.org/zachflower/eloquent-interactions)
+ [![Gitter chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eloquent-interactions/Lobby) [![Latest Stable Version](https://poser.pugx.org/zachflower/eloquent-interactions/version)](https://packagist.org/packages/zachflower/eloquent-interactions) [![Maintainability](https://api.codeclimate.com/v1/badges/a89ba1a0ac414a0db6ae/maintainability)](https://codeclimate.com/github/zachflower/eloquent-interactions/maintainability) [![Build Status](https://travis-ci.org/zachflower/eloquent-interactions.svg?branch=master)](https://travis-ci.org/zachflower/eloquent-interactions)
 
 ---
 
