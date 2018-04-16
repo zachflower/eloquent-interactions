@@ -43,7 +43,7 @@ Now, let's take a look at the base Interaction that was created by the `make:int
 
 namespace App\Interactions;
 
-use EloquentInteractions\Interaction;
+use ZachFlower\EloquentInteractions\Interaction;
 
 class ConvertMetersToMiles extends Interaction
 {
@@ -79,7 +79,7 @@ Given that information, let's update the generated Interaction into something us
 
 namespace App\Interactions;
 
-use EloquentInteractions\Interaction;
+use ZachFlower\EloquentInteractions\Interaction;
 
 class ConvertMetersToMiles extends Interaction
 {
