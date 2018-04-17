@@ -45,6 +45,14 @@ class InteractionTest extends TestCase {
     $this->assertNull($outcome->result);
     $this->assertArraySubset(['inception' => ['The inception object type is invalid.']], $outcome->errors->toArray());
   }
+
+  public function testEmailDomainExample() {
+    $outcome = CheckEmail::run(['email' => 'invalid email']);
+
+    $this->assertFalse($outcome->valid);
+    $this->assertNull($outcome->result);
+    $this->assertArraySubset(['email' => ['The email must be a valid email address.']], $outcome->errors->toArray());
+  }
 }
 
 class ConvertMetersToMiles extends Interaction {
@@ -71,5 +79,29 @@ class ConvertMetersToMiles extends Interaction {
     }
 
     return $this->meters * 0.000621371;
+  }
+}
+
+class CheckEmail extends Interaction {
+  /**
+   * You can use validations method to return the array of validations
+   * instead of the property validations
+   *
+   * @return array
+   */
+  public function validations() {
+    return [
+      'email' => 'required|email',
+    ];
+  }
+
+  /**
+   * Execute the interaction
+   *
+   * @return void
+   */
+  public function execute() {
+    // do whatever you want with the email
+    return $this->email;
   }
 }
