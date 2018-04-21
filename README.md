@@ -69,7 +69,7 @@ class ConvertMetersToMiles extends Interaction
 
 Once generated, every interaction will require the following two components:
 
-1. **Input Validations**. The class `$validations` property utilizes the built-in [Laravel validator](https://laravel.com/docs/master/validation) to define and validate the expected input of a given Interaction.
+1. **Input Validations**. The class `$validations` property utilizes the built-in [Laravel validator](https://laravel.com/docs/master/validation) to define and validate the expected input of a given Interaction. Alternatively, the `$validations` property can be replaced with a `validations()` method.
 2. **Business Logic**. The `execute()` method takes the provided input—after it passes validation, of course—and executes any necessary business logic on it. Each input you defined will be available. If any of the inputs are invalid, `execute()` won't be run.
 
 Given that information, let's update the generated Interaction into something usable:
@@ -139,6 +139,43 @@ Illuminate\Validation\ValidationException with message 'The given data failed to
 ### Validations
 
 Eloquent Interactions relies heavily on the build-in [Laravel validator](https://laravel.com/docs/master/validation). This means that any validation method available within a Laravel application will also be available to the Eloquent Interactions validator. That said, there is currently one custom validator (with more on the horizon) to better facilitate the backend-nature of Eloquent Interactions.
+
+### Advanced Validators
+
+If the built-in validators aren't powerful enough for your needs, you can use a `validations()` method in lieu of the `$validations` property. For example, let's say that we want to use a class to validate the `meters` parameter in the above examples. Our interaction would change to look something like this:
+
+
+```php
+<?php
+
+namespace App\Interactions;
+
+use ZachFlower\EloquentInteractions\Interaction;
+
+class ConvertMetersToMiles extends Interaction
+{
+    /**
+     * Execute the interaction
+     *
+     * @return void
+     */
+    public function execute() {
+        return $this->meters * 0.000621371;
+    }
+    
+    /**
+     * Parameter validations
+     *
+     * @var array
+     */
+    public function validations()
+    {
+        return [
+            'meters' => ['required', new MyMetersRule()],
+        ];
+    }
+}
+```
 
 #### Objects
 
