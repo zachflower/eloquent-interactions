@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         php-versions: ['7.4', '8.0', '8.1', '8.2', '8.3']
+        laravel-versions: ['8.*', '9.*', '10.*']
 
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +23,10 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
-    - name: Install dependencies
+    - name: Pin Laravel version
+      run: composer require "illuminate/validation:${{ matrix.laravel-versions }}" --no-update
+
+    - name: Install other dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run tests
