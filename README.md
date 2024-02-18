@@ -1,6 +1,6 @@
 # Eloquent Interactions
 
-Eloquent Interactions manages application-specific business logic. It's an implementation of the command pattern in PHP for Laravel, and is inspired by the [ActiveInteraction](https://github.com/AaronLasseigne/active_interaction) library in Ruby.
+Eloquent Interactions manages application-specific business logic. It's an implementation of the [command pattern](https://refactoring.guru/design-patterns/command) in PHP for Laravel, and is inspired by the [ActiveInteraction](https://github.com/AaronLasseigne/active_interaction) library in Ruby.
 
 [![Latest Stable Version](https://poser.pugx.org/zachflower/eloquent-interactions/version)](https://packagist.org/packages/zachflower/eloquent-interactions) [![CI](https://github.com/zachflower/eloquent-interactions/actions/workflows/main.yml/badge.svg)](https://github.com/zachflower/eloquent-interactions/actions/workflows/main.yml)
 
