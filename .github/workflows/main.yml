@@ -1,0 +1,64 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - php-version: 7.2.5
+            laravel-version: '7.*'
+          - php-version: 7.3
+            laravel-version: '7.*'
+          - php-version: 7.3
+            laravel-version: '8.*'
+          - php-version: 7.4
+            laravel-version: '7.*'
+          - php-version: 7.4
+            laravel-version: '8.*'
+          - php-version: 8.0
+            laravel-version: '8.*'
+          - php-version: 8.0
+            laravel-version: '9.*'
+          - php-version: 8.1
+            laravel-version: '8.*'
+          - php-version: 8.1
+            laravel-version: '9.*'
+          - php-version: 8.1
+            laravel-version: '10.*'
+          - php-version: 8.2
+            laravel-version: '8.*'
+          - php-version: 8.2
+            laravel-version: '9.*'
+          - php-version: 8.2
+            laravel-version: '10.*'
+          - php-version: 8.3
+            laravel-version: '8.*'
+          - php-version: 8.3
+            laravel-version: '9.*'
+          - php-version: 8.3
+            laravel-version: '10.*'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+        coverage: none
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Pin Laravel version
+      run: composer require "illuminate/validation:${{ matrix.laravel-version }}" --no-update
+
+    - name: Install other dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run tests
+      run: ./vendor/bin/phpunit

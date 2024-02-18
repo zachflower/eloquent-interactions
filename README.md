@@ -2,7 +2,7 @@
 
 Eloquent Interactions manages application-specific business logic. It's an implementation of the command pattern in PHP for Laravel, and is inspired by the [ActiveInteraction](https://github.com/AaronLasseigne/active_interaction) library in Ruby.
 
- [![Gitter chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eloquent-interactions/Lobby) [![Latest Stable Version](https://poser.pugx.org/zachflower/eloquent-interactions/version)](https://packagist.org/packages/zachflower/eloquent-interactions) [![Maintainability](https://api.codeclimate.com/v1/badges/a89ba1a0ac414a0db6ae/maintainability)](https://codeclimate.com/github/zachflower/eloquent-interactions/maintainability) [![Build Status](https://travis-ci.org/zachflower/eloquent-interactions.svg?branch=master)](https://travis-ci.org/zachflower/eloquent-interactions)
+[![Latest Stable Version](https://poser.pugx.org/zachflower/eloquent-interactions/version)](https://packagist.org/packages/zachflower/eloquent-interactions) [![CI](https://github.com/zachflower/eloquent-interactions/actions/workflows/main.yml/badge.svg)]
 
 ---
 
@@ -16,15 +16,7 @@ To install Eloquent Interactions, require the library via [Composer](https://get
 composer require zachflower/eloquent-interactions
 ```
 
-Eloquent Interactions is build with Laravel 5.3+ in mind. Earlier versions of Laravel _may_ work, but they have not been tested, so your mileage may vary.
-
-### Laravel < 5.5:
-
-If you have disabled auto-discovery in Laravel, or are using a version of Laravel prior to 5.5, add the `EloquentInteractionsServiceProvider` to the `providers` array in `config/app.php`:
-
-```php
-ZachFlower\EloquentInteractions\EloquentInteractionsServiceProvider::class,
-```
+Eloquent Interactions is built with Laravel 7.0+ in mind, and has tests currently validating compatibility with Laravel 7, 8, 9, and 10 on PHP 7.2.5 through 8.3. If you find any issues with your specific version of Laravel or PHP, please [open an issue](https://github.com/zachflower/eloquent-interactions/issues/new) and I will do my best to address it.
 
 ## Basic Usage
 
@@ -118,7 +110,7 @@ To execute the Interaction, you can call the static `run()` method on the class.
 >>> $outcome->errors->toArray()
 => [
      "meters" => [
-       "The meters must be a number.",
+       "The meters field must be a number.",
      ],
    ]
 ```
@@ -131,7 +123,7 @@ Illuminate\Validation\ValidationException with message 'The given data failed to
 >>> $outcome->errors->toArray();
 => [
      "meters" => [
-       "The meters must be a number.",
+       "The meters field must be a number.",
      ],
    ]
 ```
@@ -162,7 +154,7 @@ class ConvertMetersToMiles extends Interaction
     public function execute() {
         return $this->meters * 0.000621371;
     }
-    
+
     /**
      * Parameter validations
      *
@@ -219,4 +211,4 @@ The [issue tracker](https://github.com/zachflower/eloquent-interactions/issues) 
 
 ## Copyright and License
 
-Code and documentation copyright 2017 Zachary Flower. Code released under the [MIT license](https://github.com/zachflower/eloquent-interactions/blob/master/LICENSE.md).
+Code and documentation copyright 2024 Zachary Flower. Code released under the [MIT license](https://github.com/zachflower/eloquent-interactions/blob/master/LICENSE.md).

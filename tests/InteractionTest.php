@@ -2,9 +2,11 @@
 
 namespace ZachFlower\EloquentInteractions\Tests;
 
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use ZachFlower\EloquentInteractions\Interaction;
 
 class InteractionTest extends TestCase {
+  use ArraySubsetAsserts;
 
   public function testValidInput() {
     $outcome = ConvertMetersToMiles::run(['meters' => 10000]);
@@ -19,7 +21,11 @@ class InteractionTest extends TestCase {
 
     $this->assertFalse($outcome->valid);
     $this->assertNull($outcome->result);
-    $this->assertArraySubset(['meters' => ['The meters must be a number.']], $outcome->errors->toArray());
+    if (version_compare($this->app->version(), '10.0.0', '>=')) {
+      $this->assertArraySubset(['meters' => ['The meters field must be a number.']], $outcome->errors->toArray());
+    } else {
+      $this->assertArraySubset(['meters' => ['The meters must be a number.']], $outcome->errors->toArray());
+    }
   }
 
   public function testCustomError() {
@@ -51,7 +57,13 @@ class InteractionTest extends TestCase {
 
     $this->assertFalse($outcome->valid);
     $this->assertNull($outcome->result);
-    $this->assertArraySubset(['email' => ['The email must be a valid email address.']], $outcome->errors->toArray());
+
+    // check illuminate/validation version
+    if (version_compare($this->app->version(), '10.0.0', '>=')) {
+      $this->assertArraySubset(['email' => ['The email field must be a valid email address.']], $outcome->errors->toArray());
+    } else {
+      $this->assertArraySubset(['email' => ['The email must be a valid email address.']], $outcome->errors->toArray());
+    }
   }
 }
 
