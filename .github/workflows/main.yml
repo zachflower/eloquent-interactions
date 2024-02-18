@@ -8,8 +8,17 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['7.4', '8.0', '8.1', '8.2', '8.3']
-        laravel-versions: ['8.*', '9.*', '10.*']
+        include:
+          - php-version: 7.4
+            laravel-versions: ['8.*', '9.*', '10.*']
+          - php-version: 8.0
+            laravel-versions: ['8.*', '9.*', '10.*']
+          - php-version: 8.1
+            laravel-versions: ['8.*', '9.*', '10.*']
+          - php-version: 8.2
+            laravel-versions: ['8.*', '9.*', '10.*']
+          - php-version: 8.3
+            laravel-versions: ['8.*', '9.*', '10.*']
 
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +26,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: ${{ matrix.php-version }}
         coverage: none
 
     - name: Validate composer.json and composer.lock
